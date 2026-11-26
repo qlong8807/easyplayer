@@ -68,4 +68,17 @@ class FakeMediaRepository : MediaRepository {
 
     override suspend fun updateSubtitleSpeed(uri: String, speed: Float) {
     }
+
+    override suspend fun removeFromPlaybackHistory(uri: String) {
+        val index = videos.indexOfFirst { it.uriString == uri }
+        if (index >= 0) {
+            videos[index] = videos[index].copy(lastPlayedAt = null)
+        }
+    }
+
+    override suspend fun clearPlaybackHistory() {
+        videos.forEachIndexed { index, video ->
+            videos[index] = video.copy(lastPlayedAt = null)
+        }
+    }
 }

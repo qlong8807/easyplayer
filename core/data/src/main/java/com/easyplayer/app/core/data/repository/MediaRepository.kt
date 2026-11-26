@@ -59,4 +59,10 @@ interface MediaRepository {
     suspend fun addExternalSubtitleToMedium(uri: String, subtitleUri: Uri)
     suspend fun updateSubtitleDelay(uri: String, delay: Long)
     suspend fun updateSubtitleSpeed(uri: String, speed: Float)
+
+    /** Removes a single video from playback history without deleting its other playback state. */
+    suspend fun removeFromPlaybackHistory(uri: String)
+
+    /** Clears playback history without deleting videos or their other playback state. */
+    suspend fun clearPlaybackHistory()
 }

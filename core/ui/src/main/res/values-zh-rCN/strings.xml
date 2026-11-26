@@ -226,6 +226,11 @@
     <string name="info">信息</string>
     <string name="play">播放</string>
     <string name="recently_played">近期播放</string>
+    <string name="playback_history">历史回放</string>
+    <string name="clear_playback_history">清空历史回放</string>
+    <string name="clear_playback_history_confirmation">确定清空所有历史回放记录吗？视频文件不会被删除。</string>
+    <string name="remove_from_playback_history">从历史回放中移除</string>
+    <string name="no_playback_history">暂无历史回放</string>
     <string name="delete_one_video">删除 1 个视频吗？</string>
     <string name="delete_videos">删除 %1$d 个视频吗？</string>
     <string name="delete_one_folder">删除 1 个文件夹吗？</string>

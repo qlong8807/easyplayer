@@ -190,4 +190,12 @@ class LocalMediaRepository @Inject constructor(
             ),
         )
     }
+
+    override suspend fun removeFromPlaybackHistory(uri: String) {
+        mediumStateDao.clearLastPlayedTime(uri)
+    }
+
+    override suspend fun clearPlaybackHistory() {
+        mediumStateDao.clearAllLastPlayedTime()
+    }
 }

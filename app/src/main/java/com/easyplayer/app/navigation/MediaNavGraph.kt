@@ -2,13 +2,16 @@ package com.easyplayer.app.navigation
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.navigation
 import com.easyplayer.app.feature.player.PlayerActivity
 import com.easyplayer.app.feature.player.utils.PlayerApi
 import com.easyplayer.app.feature.videopicker.navigation.MediaPickerRoute
+import com.easyplayer.app.feature.videopicker.navigation.historyScreen
 import com.easyplayer.app.feature.videopicker.navigation.mediaPickerScreen
+import com.easyplayer.app.feature.videopicker.navigation.navigateToHistory
 import com.easyplayer.app.feature.videopicker.navigation.navigateToMediaPickerScreen
 import com.easyplayer.app.feature.videopicker.navigation.navigateToSearch
 import com.easyplayer.app.feature.videopicker.navigation.searchScreen
@@ -22,6 +25,15 @@ fun NavGraphBuilder.mediaNavGraph(
     context: Context,
     navController: NavHostController,
 ) {
+    val playVideos: (List<Uri>) -> Unit = { uris ->
+        val intent = Intent(context, PlayerActivity::class.java).apply {
+            action = Intent.ACTION_VIEW
+            data = uris.first()
+            putParcelableArrayListExtra(PlayerApi.API_PLAYLIST, ArrayList(uris))
+        }
+        context.startActivity(intent)
+    }
+
     navigation<MediaRootRoute>(startDestination = MediaPickerRoute()) {
         mediaPickerScreen(
             onNavigateUp = navController::navigateUp,
@@ -32,17 +44,11 @@ fun NavGraphBuilder.mediaNavGraph(
                 }
                 context.startActivity(intent)
             },
-            onPlayVideos = { uris ->
-                val intent = Intent(context, PlayerActivity::class.java).apply {
-                    action = Intent.ACTION_VIEW
-                    data = uris.first()
-                    putParcelableArrayListExtra(PlayerApi.API_PLAYLIST, ArrayList(uris))
-                }
-                context.startActivity(intent)
-            },
+            onPlayVideos = playVideos,
             onFolderClick = navController::navigateToMediaPickerScreen,
             onSettingsClick = navController::navigateToSettings,
             onSearchClick = navController::navigateToSearch,
+            onHistoryClick = navController::navigateToHistory,
         )
 
         searchScreen(
@@ -55,6 +61,11 @@ fun NavGraphBuilder.mediaNavGraph(
                 context.startActivity(intent)
             },
             onFolderClick = navController::navigateToMediaPickerScreen,
+        )
+
+        historyScreen(
+            onNavigateUp = navController::navigateUp,
+            onPlayVideos = playVideos,
         )
     }
 }

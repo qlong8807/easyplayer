@@ -231,6 +231,11 @@
     <string name="info">Info</string>
     <string name="play">Play</string>
     <string name="recently_played">Recently played</string>
+    <string name="playback_history">Playback history</string>
+    <string name="clear_playback_history">Clear playback history</string>
+    <string name="clear_playback_history_confirmation">Clear all playback history? Video files will not be deleted.</string>
+    <string name="remove_from_playback_history">Remove from playback history</string>
+    <string name="no_playback_history">No playback history yet</string>
     <string name="delete_one_video">Delete 1 video?</string>
     <string name="delete_videos">Delete %1$d videos?</string>
     <string name="delete_one_folder">Delete 1 folder?</string>
