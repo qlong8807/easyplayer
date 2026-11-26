@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Next Player is a native Android video player written in Kotlin, using Jetpack Compose + Material 3. It relies on Media3/ExoPlayer with an FFmpeg extension (via nextlib) for broad format support.
+Easy Player is a native Android video player written in Kotlin, using Jetpack Compose + Material 3. It relies on Media3/ExoPlayer with an FFmpeg extension (via nextlib) for broad format support.
 
 ## Build Commands
 
@@ -22,7 +22,7 @@ Next Player is a native Android video player written in Kotlin, using Jetpack Co
 ./gradlew test
 
 # Run a single test class
-./gradlew :core:domain:test --tests "dev.anilbeesetti.nextplayer.core.domain.GetSortedVideosUseCaseTest"
+./gradlew :core:domain:test --tests "com.easyplayer.app.core.domain.GetSortedVideosUseCaseTest"
 
 # Lint check (ktlint)
 ./gradlew ktlintCheck
@@ -61,7 +61,7 @@ app
 - **`core:database`** — Room database with schema exports. DAOs return `Flow` for reactive queries.
 - **`core:datastore`** — Jetpack DataStore for user preferences (theme, player settings, sort order).
 - **`core:media`** — `MediaSynchronizer` scans device media into the database. `MediaOperationsService` handles file operations.
-- **`core:ui`** — `NextPlayerTheme`, Material 3 color scheme generation, shared Compose components.
+- **`core:ui`** — `EasyPlayerTheme`, Material 3 color scheme generation, shared Compose components.
 - **`core:common`** — Extensions, `@ApplicationScope` coroutine scope, character encoding detection (juniversalchardet).
 - **`feature:player`** — Media3/ExoPlayer integration. Hybrid Compose + ViewBinding. Player controls, subtitle/audio track selection, playback state management, `PlayerService`.
 - **`feature:videopicker`** — Media library browser (folder view, video list, tree view). Coil for thumbnails, Accompanist for permissions.
